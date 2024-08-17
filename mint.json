@@ -25,10 +25,13 @@
     "name": "Dashboard",
     "url": "https://dashboard.mintlify.com"
   },
+  "primaryTab": {
+    "name": "관리자 사용법"
+  },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "회사 정책",
+      "url": "company-policies"
     }
   ],
   "anchors": [
@@ -69,17 +72,9 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Company Policies",
       "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "company-policies/introduction"
       ]
     }
   ],
