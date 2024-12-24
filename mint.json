@@ -31,12 +31,14 @@
   "navigation": [
     {
       "group": "클래스101",
+      "icon": "house",
       "pages": [
         "home"
       ]
     },
     {
       "group": "엔지니어링",
+      "icon": "desktop",
       "pages": [
         "engineering/1-welcome",
         "engineering/2-how-we-work",
