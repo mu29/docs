@@ -1,86 +1,75 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
-  "favicon": "/favicon.svg",
+  "name": "CLASS101 Docs",
+  "logo": "/assets/logo.svg",
+  "favicon": "/assets/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#FF5D00",
+    "light": "#FF8D57",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#212121",
+      "to": "#212121"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+  "modeToggle": {
+    "default": "light",
+    "isHidden": true
   },
   "primaryTab": {
-    "name": "관리자 사용법"
+    "name": "홈"
   },
   "tabs": [
+    {
+      "name": "엔지니어링",
+      "url": "engineering"
+    },
     {
       "name": "회사 정책",
       "url": "company-policies"
     }
   ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
-  ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "클래스101",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "home"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "엔지니어링",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "engineering/1-welcome",
+        "engineering/2-how-we-work",
+        "engineering/3-making-a-career"
       ]
     },
     {
-      "group": "Company Policies",
+      "group": "모범 사례",
+      "pages": [
+        "engineering/best-practices/code-review-guide",
+        "engineering/best-practices/frontend-code-style-guide",
+        "engineering/best-practices/frontend-best-practices",
+        "engineering/best-practices/graphql-best-practices",
+        "engineering/best-practices/backend-code-style-guide"
+      ]
+    },
+    {
+      "group": "커리어 래더",
+      "pages": [
+        "engineering/career-ladder/l3",
+        "engineering/career-ladder/l4",
+        "engineering/career-ladder/l5",
+        "engineering/career-ladder/l6"
+      ]
+    },
+    {
+      "group": "회사 정책",
       "pages": [
         "company-policies/introduction"
       ]
     }
   ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+  "seo": {
+    "indexHiddenPages": true
   }
 }

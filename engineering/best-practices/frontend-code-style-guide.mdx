@@ -1,0 +1,438 @@
+---
+title: 프론트엔드 코드 스타일 가이드
+---
+
+## Variable
+
+<AccordionGroup>
+  <Accordion title="파일 범위의 상수는 UPPER_CASE로 적습니다.">
+    ```typescript
+    const NUMBER_OF_WHEELS = 6;
+    ```
+  </Accordion>
+  <Accordion title="파일 범위의 상수는 UPPER_CASE로 적습니다.">
+    ```typescript
+    const NUMBER_OF_WHEELS = 6;
+    ```
+  </Accordion>
+  <Accordion title="그 외에는 모두 camelCase로 적습니다.">
+    ```typescript
+    function printHello(worldName: string) {
+      // BAD 👎
+      const HELLO_TEXT = 'Hello ';
+      console.log(HELLO_TEXT + worldName);
+
+      // GOOD 👍
+      const helloText = 'Hello ';
+      console.log(helloText + worldName);
+    }
+    ```
+  </Accordion>
+  <Accordion title="맨 앞에 _ 가 붙은 변수는 사용하지 않는 변수입니다.">
+    ```typescript
+    export type UseProfileProps = unknown;
+
+    export const useProfile = (_: UseProfileProps) => {
+      const { data } = useUserInfoQuery();
+      const { signOut } = useSignOut();
+
+      return {
+        user: data?.user,
+        signOut,
+      };
+    }
+    ```
+  </Accordion>
+  <Accordion title="__ 접두사는 자동으로 생성되는 파일에만 붙습니다.">
+    ```typescript
+    // codegen으로 생성된 폴더
+    __generated__
+    ```
+  </Accordion>
+  <Accordion title="Boolean 타입의 변수는 is, has, can과 같은 접두사를 붙입니다.">
+    ```typescript
+    // BAD 👎
+    const disable = true;
+    const display = false;
+
+    // GOOD 👍
+    const isDisabled = true;
+    const canEdit = false;
+    const hasOptions = true;
+
+    const [isPlay, setIsPlay] = useState(false);
+    const [hasKlassTicket, setKlassTick] = useState(false); 
+    ```
+    단, 컴포넌트 props로 넘어가는 boolean 변수에서는 is, has, can을 사용하지 않습니다.  props로 넘어가는 변수는 선언적으로 작성합니다.
+    ```tsx
+    // BAD 👎
+    <Component isHideButton />
+
+    // GOOD 👍
+    <Component buttonHidden />
+    <Component buttonDisabled />
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Type and Enum
+
+<AccordionGroup>
+  <Accordion title="Type에 Interface를 사용하지 않습니다.">
+    ```typescript
+    // BAD 👎
+    interface Props {
+      // ...
+    }
+
+    // GOOD 👍
+    type Props = { /* ... */ };
+    ```
+  </Accordion>
+  <Accordion title="Type, Enum은 PascalCase로 적습니다.">
+    ```typescript
+    // BAD 👎
+    type personProps = { /* ... */ };
+
+    enum buttonSize {
+      // ...
+    }
+
+    // GOOD 👍
+    type PersonProps = { /* ... */ };
+
+    enum ButtonSize {
+      // ...
+    }
+    ```
+  </Accordion>
+  <Accordion title="Enum의 값(Value)도 PascalCase 로 적습니다.">
+    ```typescript
+    // BAD 👎
+    enum ButtonSize {
+      SMALL = 'sm',
+      MEDIUM = 'md',
+    }
+
+    // GOOD 👍
+    enum ButtonSize {
+      Small = 'sm',
+      Medium = 'md',
+    }
+    ```
+  </Accordion>
+  <Accordion title="함수 타입은 '이름: 타입'으로 적습니다.">
+    ```typescript
+    // BAD 👎
+    onClick(): void
+
+    // GOOD 👍
+    onClick: () => void
+    ```
+  </Accordion>
+  <Accordion title="타입 변환은 명시적으로 합니다.">
+    ```typescript
+    // BAD 👎
+    const isProduct = !!product
+
+    // GOOD 👍
+    const isProduct = Boolean(product)
+    ```
+  </Accordion>
+  <Accordion title="any 타입을 사용하지 않습니다. 가급적 제네릭 타입을, 어렵다면 unknown 타입을 사용해야 합니다.">
+    ```typescript
+    // BAD 👎
+    function print(value: any) { ... }
+
+    // GOOD 👍
+    function print<Value>(value: Value) { ... }
+    function print(value: unknown) { ... }
+    ```
+  </Accordion>
+  <Accordion title="제네릭을 사용할 때 T, U, V 같이 한 문자가 아닌 명시적인 이름을 사용합니다.">
+    ```typescript
+    // BAD 👎
+    function print<T>(value: T) { ... }
+
+    // GOOD 👍
+    function print<Value>(value: Value) { ... }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Function
+
+<AccordionGroup>
+  <Accordion title="함수 이름은 동사로 시작합니다.">
+    ```typescript
+    // BAD 👎
+    function modal(config: ModalConfig) {
+      ...
+    }
+
+    // GOOD 👍
+    function openModal(config: ModalConfig) {
+      ...
+    }
+    ```
+  </Accordion>
+  <Accordion title="페이지 이동 함수 이름에는 moveTo, replaceWith 접두어를 붙입니다.">
+    ```typescript
+    // BAD 👎
+    function goToLecturePage() {
+      // ...
+    }
+
+    // GOOD 👍
+    function moveToLecturePage() {
+      // ...
+    }
+    ```
+  </Accordion>
+  <Accordion title="파일 범위에 정의되는 함수는 function 키워드를 사용해서 정의합니다.">
+    ```typescript
+    // BAD 👎
+    const merge = () => {}
+
+    // GOOD 👍
+    function merge() {}
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Control Statement
+
+<AccordionGroup>
+  <Accordion title="if 문에는 반드시 중괄호를 사용합니다.">
+    ```typescript
+    // BAD 👎
+    if(isVisible) return null;
+
+    // GOOD 👍
+    if(isVisible){
+      return null;
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Event Handler
+
+<AccordionGroup>
+  <Accordion title="컴포넌트의 속성으로 전달하는 이벤트 핸들러에는 on 접두사를 붙입니다.">
+    ```tsx
+    // BAD 👎
+    <SignUpForm handleFormSubmit={/* ... */} />
+
+    // GOOD 👍
+    <SignUpForm onFormSubmit={/* ... */} />
+    ```
+  </Accordion>
+  <Accordion title="이벤트 핸들러 이름은 동사로 끝납니다.">
+    ```tsx
+    // BAD 👎
+    const handleClickButton = useCallback(() => { /* ... */ })
+
+    <SignUpForm onSubmitForm={/* ... */} />
+
+    // GOOD 👍
+    const handleButtonClick = useCallback(() => { /* ... */ })
+
+    <SignUpForm onFormSubmit={/* ... */} />
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Component
+
+<AccordionGroup>
+  <Accordion title="컴포넌트 속성 타입 이름은 컴포넌트 이름 + Props로 작성합니다.">
+    ```tsx
+    // BAD 👎
+    type Props = {/* ... */}
+
+    // GOOD 👍
+    type HeaderProps = {/* ... */}
+    ```
+  </Accordion>
+  <Accordion title="컴포넌트 훅의 속성 타입 이름은 Use + 컴포넌트 이름 + Props로 작성합니다.">
+    ```tsx
+    // BAD 👎
+    type CoverSectionHookProps = {...}
+
+    // GOOD 👍
+    type UseCoverSectionProps = {...}
+    ```
+  </Accordion>
+  <Accordion title="Boolean 타입의 속성에 항상 값을 넣어줍니다.">
+    ```tsx
+    // BAD 👎
+    <Component buttonHidden />
+
+    // GOOD 👍
+    <Component buttonHidden={true} />
+    <Component buttonDisabled={false} />
+    ```
+  </Accordion>
+  <Accordion title="하나의 파일에는 하나의 컴포넌트만 정의합니다." />
+  <Accordion title="index.ts 파일에는 컴포넌트를 정의하지 않습니다.">
+    `import`, `export`만 작성합니다.
+
+    ```typescript
+    export { SomeButton, type SomeType } from './SomeButton';
+    ```
+  </Accordion>
+  <Accordion title="컴포넌트를 정의한 파일 이름은 PascalCase로 작성합니다.">
+    ```
+    // BAD 👎
+    button.tsx
+
+    // GOOD 👍
+    Button.tsx
+    ```
+  </Accordion>
+  <Accordion title="파일이 컴포넌트를 포함하고 있지 않다면 .ts 확장자를 사용합니다">
+    ```
+    // BAD 👎
+    useProfileSection.tsx
+
+    // GOOD 👍
+    useProfileSection.ts
+    ```
+  </Accordion>
+  <Accordion title="컴포넌트의 로직은 훅으로 분리합니다.">
+    ```tsx
+    // BAD 👎
+    const SignOutButton: FC = () => {
+      const { signOut } = useSignOut();
+
+      return (
+        <Button onClick={signOut}>로그아웃</Button>
+      );
+    }
+
+    // GOOD 👍
+    const SignOutButton = bind(useSignOutButton, ({ handlePress }) => (
+      <Button onClick={handlePress} />
+    ));
+
+    const useSignOutButton = () => {
+      const { signOut } = useSignOut();
+
+      return {
+        handlePress: signOut,
+      };
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## GraphQL
+
+<AccordionGroup>
+  <Accordion title="쿼리 이름은 서버에서 정의한 쿼리 이름 + On + 컴포넌트 이름 으로 작성합니다.">
+    ```tsx
+    // BAD 👎
+    gql`
+      query helpList {
+        help {
+          ...
+        }
+      }
+    `
+
+    // GOOD 👍
+    gql`
+      query HelpOnHelpList {
+        help {
+          ...
+        }
+      }
+    `
+    ```
+    다수의 쿼리가 하나로 묶일 때는 `And`로 쿼리 이름을 연결합니다.
+    ```tsx
+    // BAD 👎
+    gql`
+      query helpComment {
+        help { ... }
+        comment { ... }
+      }
+    `
+
+    // GOOD 👍
+    gql`
+      query helpAndCommentOnHelpList {
+        help {
+          ...
+        }
+
+        comment {
+          ...
+        }
+      }
+    `
+    ```
+  </Accordion>
+  <Accordion title="뮤테이션 이름은 서버에서 정의한 뮤테이션 이름 + On + 컴포넌트 이름 으로 작성합니다.">
+    ```tsx
+    // BAD 👎
+    gql`
+      mutation UpdatePhoneNumber {
+        updatePhoneNumber {
+          ...
+        }
+      }
+    `
+
+    // GOOD 👍
+    gql`
+      mutaion UpdatePhoneNumberOnPhoneField {
+        updatePhoneNumber{
+          ...
+        }
+      }
+    `
+    ```
+  </Accordion>
+  <Accordion title="프래그먼트 이름은 오브젝트 이름 + On + 컴포넌트 이름 으로 작성합니다.">
+    ```tsx
+    // BAD 👎
+    gql`
+      fragment PhoneFragment on User {
+        phoneNumber
+      }
+    `
+
+    // GOOD 👍
+    gql`
+      fragment UserOnPhoneField on User {
+        phoneNumber
+      }
+    `;
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Context APIs
+
+최대한 사용하지 않는 것이 좋습니다.
+
+<AccordionGroup>
+  <Accordion title="Context는 상태만 가지고 있고, 사용하는 쪽에서 로직을 정의합니다." />
+  <Accordion title="상태 공유가 필요한 경우 가급적 Render Prop을 사용합니다.">
+    ```tsx
+    // render props
+    const TiemLinePage: Page = () => {
+      return (
+        <VStack>
+          <Header />
+          <CommunityCategoryTab>
+            {(category) => <CommunityPostList category={category} />}
+          </CommunityCategoryTab>
+        </VStack>
+      )
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
