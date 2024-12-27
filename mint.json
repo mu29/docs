@@ -78,7 +78,7 @@
         "cx-admin/admin/payment-management",
         "cx-admin/admin/subscription-ticket-management",
         "cx-admin/admin/gatcha-admin",
-        "cx-admin/admin/data-asks",
+        "cx-admin/admin/data-asks"
       ]
     },
     {
