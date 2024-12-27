@@ -19,6 +19,10 @@
     "name": "홈"
   },
   "tabs": [
+      {
+      "name": "CX 어드민",
+      "url": "cx-admin"
+    },
     {
       "name": "엔지니어링",
       "url": "engineering"
@@ -31,14 +35,12 @@
   "navigation": [
     {
       "group": "클래스101",
-      "icon": "house",
       "pages": [
         "home"
       ]
     },
     {
       "group": "엔지니어링",
-      "icon": "desktop",
       "pages": [
         "engineering/1-welcome",
         "engineering/2-how-we-work",
@@ -62,6 +64,21 @@
         "engineering/career-ladder/l4",
         "engineering/career-ladder/l5",
         "engineering/career-ladder/l6"
+      ]
+    },
+     {
+      "group": "어드민 필수기능",
+      "pages": [
+        "cx-admin/admin/user-management",
+        "cx-admin/admin/subscription-management",
+        "cx-admin/admin/item-management",
+        "cx-admin/admin/class-management",
+        "cx-admin/admin/class-store-management",
+        "cx-admin/admin/kit-store-management",
+        "cx-admin/admin/payment-management",
+        "cx-admin/admin/subscription-ticket-management",
+        "cx-admin/admin/gatcha-admin",
+        "cx-admin/admin/data-asks",
       ]
     },
     {
